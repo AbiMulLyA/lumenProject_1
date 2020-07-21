@@ -1,0 +1,11 @@
+API digunakan untuk menghubungkan antar 2 software agar saling berkomunikasi 
+
+Web Service digunakan menghubungkan aplikasi dengan sistem melalui internet
+
+Rest menggunakan protokol HTTP
+
+
+perbedaan REST dan RESTful API.. RESTFul penerapan methodnya sepenuhnya dengan HTTP Method.. jikahanya GET POST saja maka itu hanya sebatas REST
+
+composer create-project laravel/lumen test-install --prefer-dist
+
