@@ -11,6 +11,11 @@ class JWTMiddleware
     {
         $token = $request->bearerToken('token');
         if(!$token) {
+            Log::error("Input Token First!");
+            return response()->json([
+                'error' => 'Input Token First!'
+            ], 401);
+        }else if($token != "example_key"){
             Log::error("Wrong Token!");
             return response()->json([
                 'error' => 'Wrong Token!'

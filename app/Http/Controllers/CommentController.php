@@ -48,5 +48,26 @@ class CommentController extends Controller
             ->header("content-type","application/json")
             ->header('Author','Abi');
     }
+    public function patch(Request $request){
+        $id = $request->route('id');
+        $data['Data Comment'] = [
+            "id "=> $id,
+            "content" => $request->input("content"),
+            "status" => $request->input("status"),
+            "create_time" => $request->input("create_time"),
+            "author_id" => $request->input("author_id"),
+            "email" => $request->input("email"),
+            "url" => $request->input("url"),
+            "post_id" => $request->input("post_id")
+        ];
+        // $name = $request->input('name');
+        return response($content=$data, $status = 201)
+            ->header("content-type","application/json")
+            ->header('Author','Abi');
+    }
+    public function Delete(Request $request){
+        $id = $request->route('id');
+        return "id = ".$id." Deleted";
+    }
     //
 }

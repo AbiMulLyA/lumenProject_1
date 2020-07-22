@@ -48,5 +48,27 @@ class PostController extends Controller
             ->header("content-type","application/json")
             ->header('Author','Abi');
     }
+    public function patch(Request $request){
+        $id = $request->route('id');
+        $data['Data Author'] = [
+            "id" => $id,
+            "title" => $request->input("title"),
+            "content" => $request->input("content"),
+            "tags" => $request->input("tags"),
+            "status" => $request->input("status"),
+            "create_time" => $request->input("create_time"),
+            "update_time" => $request->input("update_time"),
+            "author_id" => $request->input("author_time")
+        ];
+        // $name = $request->input('name');
+        return response($content=$data, $status = 201)
+            ->header("content-type","application/json")
+            ->header('Author','Abi');
+    }
+
+    public function Delete(Request $request){
+        $id = $request->route('id');
+        return "id = ".$id." Deleted";
+    }
     //
 }

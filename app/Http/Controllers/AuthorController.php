@@ -39,10 +39,28 @@ class AuthorController extends Controller
             "email" => $request->input("email"),
             "profile" => $request->input("profile")
         ];
-        // $name = $request->input('name');
         return response($content=$data, $status = 201)
             ->header("content-type","application/json")
             ->header('Author','Abi');
+    }
+
+    public function patch(Request $request){
+        $id = $request->route('id');
+        $data['Data Author'] = [
+            "id" => $id,
+            "username" => $request->input("username"),
+            "password" => $request->input("password"),
+            "salt" => $request->input("salt"),
+            "email" => $request->input("email"),
+            "profile" => $request->input("profile")
+        ];
+        return response($content=$data, $status = 201)
+            ->header("content-type","application/json")
+            ->header('Author','Abi');
+    }
+    public function Delete(Request $request){
+        $id = $request->route('id');
+        return "id = ".$id." Deleted";
     }
     //
 }
