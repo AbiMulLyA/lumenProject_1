@@ -15,8 +15,7 @@ class PostController extends Controller
     {
         //
     }
-    
-    public function getAll(){
+    public function getDataPost(){
         $data = Post::all();
         if(!$data){
             return response()->json([
@@ -27,8 +26,27 @@ class PostController extends Controller
             "datas" => $data
         ]);
     }
-    public function getById($id){
-        $data = Post::find($id);
+    public function getAll(){
+        $data = Post::with(array('author'=>function($query){
+            $query->select();
+        }))->with(array('comment'=>function($query){
+            $query->select();
+        }))->get();
+        if(!$data){
+            return response()->json([
+                "Status" => "Data Not Found"
+            ]);
+        }
+        return response()->json([
+            "datas" => $data
+        ]);
+    }
+    public function getDataByPostId($id){
+        $data = Post::where('id',$id)->with(array('Author'=>function($query){
+            $query->select();
+        }))->with(array('comment'=>function($query){
+            $query->select();
+        }))->get();
         if(!$data){
             return response()->json([
                 "Status" => "ID Not Found"

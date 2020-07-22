@@ -16,7 +16,7 @@ class CommentController extends Controller
         //
     }
     
-    public function getAll(){
+    public function getDataComment(){
         $data = Comment::all();
         if(!$data){
             return response()->json([
@@ -27,8 +27,27 @@ class CommentController extends Controller
             "datas" => $data
         ]);
     }
-    public function getById($id){
-        $data = Comment::find($id);
+    public function getAll(){
+        $data = Comment::with(array('author'=>function($query){
+            $query->select();
+        }))->with(array('post'=>function($query){
+            $query->select();
+        }))->get();
+        if(!$data){
+            return response()->json([
+                "Status" => "Data Not Found"
+            ]);
+        }
+        return response()->json([
+            "datas" => $data
+        ]);
+    }
+    public function getDataByCommentId($id){
+        $data = Comment::where('id',$id)->with(array('Author'=>function($query){
+            $query->select();
+        }))->with(array('comment'=>function($query){
+            $query->select();
+        }))->get();
         if(!$data){
             return response()->json([
                 "Status" => "ID Not Found"
