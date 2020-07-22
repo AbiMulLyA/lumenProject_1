@@ -163,23 +163,23 @@ $router->get('/post', function () {
 $router->post('auth', 'AuthController@auth');
 $router->group(['middleware'=>'jwt'], function() use ($router){
     $router->group(['prefix'=> 'get'], function() use ($router){
-        $router->get('author/{id}','AuthorController@index');
-        $router->get('author','AuthorController@index');
+        $router->get('author/{id}','AuthorController@getById');
+        $router->get('author','AuthorController@getAll');
         $router->post('author', 'AuthorController@create');
         $router->patch('author/{id}', 'AuthorController@patch'); 
         $router->delete('author/{id}', 'AuthorController@delete'); 
     
-        $router->get('post/{id}','PostController@index');
-        $router->get('post','PostController@index');
+        $router->get('post/{id}','PostController@getById');
+        $router->get('post','PostController@getAll');
         $router->post('post', 'PostController@create');
         $router->patch('post/{id}', 'PostController@patch');
         $router->delete('post/{id}', 'PostController@delete');
     
-        $router->get('comment/{id}','commentController@index');
-        $router->get('comment','commentController@index');
-        $router->post('comment', 'PostController@create');
-        $router->patch('comment/{id}', 'PostController@patch');
-        $router->delete('comment/{id}', 'PostController@delete');
+        $router->get('comment/{id}','commentController@getById');
+        $router->get('comment','commentController@getAll');
+        $router->post('comment', 'commentController@create');
+        $router->patch('comment/{id}', 'commentController@patch');
+        $router->delete('comment/{id}', 'commentController@delete');
     });
     
 });

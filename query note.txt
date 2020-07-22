@@ -1,0 +1,27 @@
+{
+    "id": 22,
+    "username": "Abi",
+    "password": "test",
+    "salt": "jtest",
+    "email": "test",
+    "profile": "test"
+}
+
+{
+    "id": 22,
+    "title": "corona",
+    "content": "test",
+    "tags": "jtest",
+    "status": "test",
+    "author_id": "1"
+}
+
+
+{
+    "content" : "Corona Naik Terus.. Mudah-mudahan cepet selesai... Amiinn",
+    "status": "Published",
+    "author_id": 2,
+    "email": "abimulya.2001@gmail.com",
+    "url": "https://kompas.com/corona",
+    "post_id": 5
+}

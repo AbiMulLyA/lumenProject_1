@@ -16,9 +16,19 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+// $factory->define(User::class, function (Faker $faker) {
+//     return [
+//         'name' => $faker->name,
+//         'email' => $faker->email,
+//     ];
+// });
+
+$factory->define('App\Author', function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'username' => $faker->name,
         'email' => $faker->email,
+        'password' => $faker->password,
+        'profile' => $faker->text,
+        'salt' => $faker->regexify('[A-Za-z0-9]{5}')
     ];
 });

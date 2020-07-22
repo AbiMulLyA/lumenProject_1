@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Author;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 class AuthorController extends Controller
@@ -15,52 +16,75 @@ class AuthorController extends Controller
         //
     }
     
-    public function index(){
-        $data['Data Author']=[
-            "id" => 1,
-            "username" => "Abi",
-            "password" => "Abimulya",
-            "salt" => "Encrypted Password",
-            "email" => "Abimulya.2001@gmail.com",
-            "profile" => "Insya Allah saya akan menjadi Developer Professional"
-        ];
-
-        return response($content=$data, $status = 200)
-            ->header("content-type","application/json")
-            ->header('Author','Abi');
+    public function getAll(){
+        $data = Author::all();
+        if(!$data){
+            return response()->json([
+                "Status" => "Data Not Found"
+            ]);
+        }
+        return response()->json([
+            "datas" => $data
+        ]);
+    }
+    public function getById($id){
+        $data = Author::find($id);
+        if(!$data){
+            return response()->json([
+                "Status" => "ID Not Found"
+        ]);
+        }
+        return response()->json([
+            "datas" => $data
+        ]);
     }
 
     public function create(Request $request){
-        $data['Data Author'] = [
-            "id" => $request->input('id'),
-            "username" => $request->input("username"),
-            "password" => $request->input("password"),
-            "salt" => $request->input("salt"),
-            "email" => $request->input("email"),
-            "profile" => $request->input("profile")
-        ];
-        return response($content=$data, $status = 201)
-            ->header("content-type","application/json")
-            ->header('Author','Abi');
+        $data = new Author();
+        $data->username = $request->input("username");
+        $data->password = $request->input("password");
+        $data->salt = $request->input("salt");
+        $data->email = $request->input("email");
+        $data->profile = $request->input("profile");
+        $data->save();
+
+        return response()->json([
+            "status"=> "Success"
+        ]);
     }
 
-    public function patch(Request $request){
-        $id = $request->route('id');
-        $data['Data Author'] = [
-            "id" => $id,
-            "username" => $request->input("username"),
-            "password" => $request->input("password"),
-            "salt" => $request->input("salt"),
-            "email" => $request->input("email"),
-            "profile" => $request->input("profile")
-        ];
-        return response($content=$data, $status = 201)
-            ->header("content-type","application/json")
-            ->header('Author','Abi');
+    public function patch(Request $request, $id){
+        $data = Author::find($id);
+        if ($data) {
+            $data->username = $request->input('username');
+            $data->password = $request->input('password');
+            $data->salt = $request->input('salt');
+            $data->email = $request->input('email');
+            $data->profile = $request->input('profile');
+            $data->save();
+
+            return response()->json([
+                "status" => "Update Success",
+                "datas" => $data
+            ]);        
+        }else {
+            return response()->json([
+                "status" => "ID Not Found"
+            ]);
+        }
     }
-    public function Delete(Request $request){
-        $id = $request->route('id');
-        return "id = ".$id." Deleted";
+    public function Delete(Request $request, $id){
+        $data = Author::find($id);
+        if($data) {
+            $data->delete();
+            return response()->json([
+                "message" => "Success Deleted",
+                "results" => $data
+            ]);   
+        }else {
+            return response()->json([
+                "message" => "Parameter Not Found"
+            ]);
+        }
     }
-    //
 }
