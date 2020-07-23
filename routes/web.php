@@ -177,12 +177,12 @@ $router->group(['middleware'=>'jwt'], function() use ($router){
         $router->patch('post/{id}', 'PostController@patch');
         $router->delete('post/{id}', 'PostController@delete');
     
-        $router->get('comment','commentController@getDataComment');
-        $router->get('comment/all','commentController@getAll');
-        $router->get('comment/{id}','commentController@getDataByCommentId');
-        $router->post('comment', 'commentController@create');
-        $router->patch('comment/{id}', 'commentController@patch');
-        $router->delete('comment/{id}', 'commentController@delete');
+        $router->get('comment','CommentController@getDataComment');
+        $router->get('comment/all','CommentController@getAll');
+        $router->get('comment/{id}','CommentController@getDataByCommentId');
+        $router->post('comment', 'CommentController@create');
+        $router->patch('comment/{id}', 'CommentController@patch');
+        $router->delete('comment/{id}', 'CommentController@delete');
     });
     
 });
