@@ -161,6 +161,9 @@ $router->get('/post', function () {
 //     return "id = $id";
 // });
 $router->post('auth', 'AuthController@auth');
+$router->get('/', function () use ($router) {
+    return "Welcome to My Open API.. Please Visit this API Documentation URL to Request Data <br> https://documenter.getpostman.com/view/11494339/T1DpAwyK";
+});
 $router->group(['middleware'=>'jwt'], function() use ($router){
     $router->group(['prefix'=> 'get'], function() use ($router){
         $router->get('author','AuthorController@getDataAuthor');
