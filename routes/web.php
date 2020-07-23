@@ -165,7 +165,7 @@ $router->group(['middleware'=>'jwt'], function() use ($router){
     $router->group(['prefix'=> 'get'], function() use ($router){
         $router->get('author','AuthorController@getDataAuthor');
         $router->get('author/{id}','AuthorController@getDataByAuthorId');
-        $router->get('author/all','AuthorController@getAll');
+        // $router->get('author/all','AuthorController@getAll');
         $router->post('author', 'AuthorController@create');
         $router->patch('author/{id}', 'AuthorController@patch'); 
         $router->delete('author/{id}', 'AuthorController@delete'); 

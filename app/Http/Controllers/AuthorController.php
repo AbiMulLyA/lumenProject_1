@@ -16,21 +16,21 @@ class AuthorController extends Controller
         //
     }
     
-    public function getAll(){
-        $data = Author::with(array('post'=>function($query){
-            $query->select();
-        }))->with(array('comment'=>function($query){
-            $query->select();
-        }))->get();
-        if(!$data){
-            return response()->json([
-                "Status" => "Data Not Found"
-            ]);
-        }
-        return response()->json([
-            "datas" => $data
-        ]);
-    }
+    // public function getAll(){
+    //     $data = Author::with(array('post'=>function($query){
+    //         $query->select();
+    //     }))->with(array('comment'=>function($query){
+    //         $query->select();
+    //     }))->get();
+    //     if(!$data){
+    //         return response()->json([
+    //             "Status" => "Data Not Found"
+    //         ]);
+    //     }
+    //     return response()->json([
+    //         "datas" => $data
+    //     ]);
+    // }
     public function getDataAuthor(){
         $data = Author::all();
         if(!$data){
