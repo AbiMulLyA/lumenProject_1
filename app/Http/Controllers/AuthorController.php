@@ -43,18 +43,18 @@ class AuthorController extends Controller
         ]);
     }
     public function getDataByAuthorId($id){
-        $id = Author::find($id);
-        if(!$id){
-            return response()->json([
-                "Status" => "ID Not Found"
-        ]);
-        }
+        // $id = Author::find($id);
         $data = Author::where('id',$id)->with(array('post'=>function($query){
             $query->select();
         }))->with(array('comment'=>function($query){
             $query->select();
         }))->get();
 
+        if(!$data){
+            return response()->json([
+                "Status" => "ID Not Found"
+        ]);
+        }
         return response()->json([
             "datas" => $data
         ]);
