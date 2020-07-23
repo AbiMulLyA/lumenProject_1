@@ -46,7 +46,7 @@ class CommentController extends Controller
         // $id = Comment::find($id);
         $data = Comment::where('id',$id)->with(array('Author'=>function($query){
             $query->select();
-        }))->with(array('comment'=>function($query){
+        }))->with(array('Post'=>function($query){
             $query->select();
         }))->get();
 
