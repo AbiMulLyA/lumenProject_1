@@ -20,5 +20,6 @@ class JWTMiddleware
         }
         Log::info("Token Success");
         return $next($request);
+
     }
 }

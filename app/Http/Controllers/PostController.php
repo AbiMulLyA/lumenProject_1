@@ -68,7 +68,8 @@ class PostController extends Controller
         $data->save();
 
         return response()->json([
-            "status"=> "Success"
+            "status"=> "Success",
+            "datas"=> $data
         ]);
     }
 
