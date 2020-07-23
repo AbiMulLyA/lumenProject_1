@@ -162,7 +162,7 @@ $router->get('/post', function () {
 // });
 $router->post('auth', 'AuthController@auth');
 $router->get('/', function () use ($router) {
-    return "Welcome to My Open API.. Please Visit this API Documentation URL to Request Data <br> <a href='https://documenter.getpostman.com/view/11494339/T1DpAwyK'</a>";
+    return "Welcome to My Open API.. Please Visit this API Documentation URL to Request Data <br> <a href='https://documenter.getpostman.com/view/11494339/T1DpAwyK'>https://documenter.getpostman.com/view/11494339/T1DpAwyK</a>";
 });
 $router->group(['middleware'=>'jwt'], function() use ($router){
     $router->group(['prefix'=> 'get'], function() use ($router){
