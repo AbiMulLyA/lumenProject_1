@@ -42,16 +42,18 @@ class PostController extends Controller
         ]);
     }
     public function getDataByPostId($id){
+        $id = Post::find($id);
+        if(!$id){
+            return response()->json([
+                "Status" => "ID Not Found"
+        ]);
+        }
         $data = Post::where('id',$id)->with(array('Author'=>function($query){
             $query->select();
         }))->with(array('comment'=>function($query){
             $query->select();
         }))->get();
-        if(!$data){
-            return response()->json([
-                "Status" => "ID Not Found"
-        ]);
-        }
+
         return response()->json([
             "datas" => $data
         ]);
