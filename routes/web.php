@@ -164,22 +164,22 @@ $router->post('auth', 'AuthController@auth');
 $router->group(['middleware'=>'jwt'], function() use ($router){
     $router->group(['prefix'=> 'get'], function() use ($router){
         $router->get('author','AuthorController@getDataAuthor');
+        $router->get('author/all','AuthorController@getAll');
         $router->get('author/{id}','AuthorController@getDataByAuthorId');
-        // $router->get('author/all','AuthorController@getAll');
         $router->post('author', 'AuthorController@create');
         $router->patch('author/{id}', 'AuthorController@patch'); 
         $router->delete('author/{id}', 'AuthorController@delete'); 
     
         $router->get('post','PostController@getDataPost');
-        $router->get('post/{id}','PostController@getDataByPostId');
         $router->get('post/all','PostController@getAll');
+        $router->get('post/{id}','PostController@getDataByPostId');
         $router->post('post', 'PostController@create');
         $router->patch('post/{id}', 'PostController@patch');
         $router->delete('post/{id}', 'PostController@delete');
     
         $router->get('comment','commentController@getDataComment');
-        $router->get('comment/{id}','commentController@getDataByCommentId');
         $router->get('comment/all','commentController@getAll');
+        $router->get('comment/{id}','commentController@getDataByCommentId');
         $router->post('comment', 'commentController@create');
         $router->patch('comment/{id}', 'commentController@patch');
         $router->delete('comment/{id}', 'commentController@delete');
